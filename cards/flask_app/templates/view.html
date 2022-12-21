@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Welcome</title>
+</head>
+<body id="greenbkgrnd">
+    <div id="heading">
+        <div id='top'>
+            <h4>Card Tracker</h4>
+            <div class="sub">
+                <a href="/account/{{user.id}}" class="btnbox">My Cards</a>
+                <h1></h1>
+            </div>
+        </div>
+        <div id="bot">
+            <h5></h5>
+            <div class='sub'>
+                <a href="/allcards" class="btnbox">View All Cards</a>
+                <a href="/logout" class="btnbox">Logout</a>
+            </div>
+        </div>
+    </div>{%for cards in card%}
+    <div id="show" class="card border-warning">
+        <h3 class="card-title">{{cards.title}}</h3>
+        <h6 class="card-subtitle">Date of Print: {{cards.date_of_print}}</h6>
+        <h6 class="card-subtitle">Graded: {{cards.graded}}</h6>
+        <h6 class="card-subtitle">Price: {{cards.price}}</h6>
+        {%endfor%}
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Welcome</title>
+</head>
+<body id="sapling">
+    <div id="heading">
+        <div id='top'>
+            <h4>Card Tracker</h4>
+            <div class="sub">
+                <a href="/account/{{user.id}}" class="btnbox">My Cards</a>
+                <h1>Welcome, {{user.first_name}}!</h1>
+            </div>
+        </div>
+        <div id="bot">
+            <div class='sub'>
+                <a href="/allcards" class="btnbox">View All Cards</a>
+                <a href="/logout" class="btnbox">Logout</a>
+            </div>
+        </div>
+    </div>
+    <div id="">
+        <h3>Add A Card</h3>
+        <form action="/create" method ='post'>
+            {% with messages = get_flashed_messages(category_filter=['card']) %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <label for="title">Title:</label>
+        <input type="text" min="5" step="any" name="title"></input>
+        <label for="graded">Graded:</label>
+        <input type="text" min="2" name="graded"></input>
+        <label for="league">League:</label>
+        <select name="league">
+            <option>Baseball</option>
+            <option>Basketball</option>
+            <option>Football</option>
+            <option>Hockey</option>
+            <option>Magic the Gathering</option>
+            <option>Pokemon</option>
+            <option>Soccer</option>
+            <option>Yu-Gi-Oh</option></select>
+        <label for="date_of_print">Date of Print:</label>
+        <input type="date" name="date_of_print"></select>
+        <label for="price">Price:</label>
+        <input type="text" min="2" step="any" name="price"></input>
+            <button>Submit</button>
+        </form>
+    </div>
+</body>
+</html>
